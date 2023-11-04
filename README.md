@@ -1,6 +1,6 @@
 # exam-2023
-
-This template should help get you started developing with Vue 3 in Vite.
+ 
+I had to change main.css because it was different than from template. I gave reasoning in the css file
 
 ## Recommended IDE Setup
 
