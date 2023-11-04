@@ -1,42 +1,30 @@
 <template>
     <!--  HEADER  -->
-    <Header></Header>
+    <Header v-if="auth"></Header>
     <!--  HEADER END  -->
 
     <!--  BODY  -->
     <div id="section-body">
-        <nav id="nav-main" class="wrapper-navigation">
-            <ol>
-                <li>
-                    <a href="/">SONGS</a>
-                </li>
-                <li>
-                    <a href="/albums">ALBUMS</a>
-                </li>
-                <li>
-                    <a href="/about">ABOUT</a>
-                </li>
-            </ol>
-        </nav>
+        <Navigation v-if="auth"></Navigation>
         <router-view class="section-router"></router-view>
     </div>
     <!--  BODY END  -->
 
     <!--  PLAYER  -->
-    <div id="section-player">
+    <div id="section-player" v-if="auth">
         <AudioPlayer />
     </div>
     <!--  PLAYER END  -->
 </template>
 
 <script>
-    import Header from '@/components/HeaderComponent.vue';
-    import AudioPlayer from '@/components/AudioPlayerComponent.vue';
+    import { useAuthStore } from './stores/auth';
 
     export default {
-        components: {
-            Header,
-            AudioPlayer
+        computed:{
+            auth(){
+                return useAuthStore().is_authenticated;
+            }
         }
     }
 </script>

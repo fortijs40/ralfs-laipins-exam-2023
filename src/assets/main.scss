@@ -126,7 +126,7 @@
         list-style-type: none;
         padding        : 0px;
 
-        a {
+        #loco {
             display        : block;
             padding        : .5rem 1rem;
             margin-bottom  : .5rem;
@@ -308,18 +308,23 @@
 
                 &:hover {
                     background-color: var(--c-secondary);
-                    #duration {
+                    #td-duration {  // I changing this from duration to td-duration because in template it was td-duration not duration
                         svg{
                             opacity: 1;
                         }
                     }
                 }
                 &.active {
-                    #index, #title {
+                    #td-index, #td-title { //changed here as well from index and tite to td-index and td-title
                         color  : var(--c-accent-secondary);
                         opacity: 1;
+                        svg {
+                            height: 16px;
+                            vertical-align: middle;
+                            fill: var(--c-accent-secondary);
+                        }
                     }
-                    #title {
+                    #td-title {     //changed here as well from title to td-title
                         img {
                             transform: scale(1.25);
                             filter   : drop-shadow(0px 5px 30px rgba(144, 64, 241, .4));

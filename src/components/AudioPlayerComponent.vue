@@ -17,6 +17,7 @@ export default {
             is_playing    : false,
             audio_playback: undefined,
             audio_time    : 0,
+            audio_volume: 1,
             audio_length  : 0
         };
     },
@@ -62,7 +63,10 @@ export default {
 
             if (this.is_playing) this.$refs.audio.play();
             else this.$refs.audio.pause();
-        }
+        },
+        updateVolume() {
+            this.$refs.audio.volume = this.audio_volume;
+        },
     },
     computed: {
         ...mapState(usePlayerStore, {
@@ -150,6 +154,18 @@ export default {
                     <!-- PLAYBACK TOTAL TIME -->
                     <p>{{ get_audio_length }}</p>
                 </div>
+                
+            </div>
+            <div class="audio-slider">
+                <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    v-model="audio_volume"
+                    @input="updateVolume"
+                    class="volume-slider"
+                />
             </div>
         </div>
     </div>
@@ -237,6 +253,12 @@ export default {
                     }
                 }
             }
+            .volume-slider {
+            width: 100%;
+            height: 10px;
+            margin: 0 10px;
+            }
+
         }
         .play, .next, .prev {
             margin-right    : .5rem;
